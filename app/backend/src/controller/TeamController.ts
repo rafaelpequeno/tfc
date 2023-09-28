@@ -6,16 +6,16 @@ export default class TeamController {
     private teamService = new TeamService(),
   ) { }
 
-  public async getAll(req: Request, res: Response) {
-    const teams = await this.teamService.getAll();
+  public async getAll(_req: Request, res: Response) {
+    const serviceResponse = await this.teamService.getAll();
 
-    return res.status(200).json(teams);
+    return res.status(200).json(serviceResponse.data);
   }
 
   public async getById(req: Request, res: Response) {
     const { id } = req.params;
-    const team = await this.teamService.getById(Number(id));
+    const serviceResponse = await this.teamService.getById(Number(id));
 
-    return res.status(200).json(team);
+    return res.status(200).json(serviceResponse.data);
   }
 }

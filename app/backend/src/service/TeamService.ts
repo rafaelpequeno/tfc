@@ -1,19 +1,25 @@
 import TeamModel from '../models/TeamModel';
-import { ICRUDModelReader } from '../Interfaces/ICRUDModel';
 import ITeam from '../Interfaces/teams/ITeam';
+import { ServiceResponse } from '../Interfaces/ServiceResponse';
+import { ITeamModel } from '../Interfaces/teams/ITeamModel';
 
 export default class TeamService {
   constructor(
-    private teamModel: ICRUDModelReader<ITeam> = new TeamModel(),
+    private teamModel: ITeamModel = new TeamModel(),
   ) {}
 
-  public async getAll(): Promise<ITeam[]> {
+  public async getAll(): Promise<ServiceResponse<ITeam[]>> {
     const teams = await this.teamModel.getAll();
-    return teams;
+    return { status: 'SUCCESSFUL', data: teams };
   }
 
-  public async getById(teamId: number): Promise<ITeam | null> {
+  public async getById(teamId: number): Promise<ServiceResponse<ITeam>> {
     const team = await this.teamModel.getById(teamId);
-    return team;
+
+    if (!team) {
+      return { status: 'NOT_FOUND', data: { message: 'Team not found' } };
+    }
+
+    return { status: 'SUCCESSFUL', data: team };
   }
 }
