@@ -11,4 +11,9 @@ export default class TeamService {
     const teams = await this.teamModel.getAll();
     return teams;
   }
+
+  public async getById(teamId: number): Promise<ITeam | null> {
+    const team = await this.teamModel.getById(teamId);
+    return team;
+  }
 }

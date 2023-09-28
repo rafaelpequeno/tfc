@@ -24,5 +24,14 @@ describe('GET /teams', function () {
     const request = await chai.request(app).get('/teams');
 
     expect(request.status).to.be.equal(200);
+    expect(request.body).to.be.deep.equal(teams);
+  });
+  it('Should return one team', async function () {
+    sinon.stub(SequelizeTeam, 'findByPk').resolves(SequelizeTeam.build(teams[0]));
+
+    const request = await chai.request(app).get('/teams/1');    
+
+    expect(request.status).to.be.equal(200);
+    expect(request.body).to.be.deep.equal(teams[0]);
   });
 });

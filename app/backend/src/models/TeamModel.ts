@@ -6,6 +6,11 @@ export default class TeamModel {
 
   async getAll(): Promise<ITeam[]> {
     const data = await this.model.findAll();
-    return data.map(({ dataValues }) => ({ ...dataValues }));
+    return data;
+  }
+
+  async getById(teamId: number): Promise<ITeam | null> {
+    const data = await this.model.findByPk(teamId);
+    return data;
   }
 }

@@ -4,7 +4,7 @@ export interface ICRUDModelCreator<T> {
 
 export interface ICRUDModelReader<T> {
   getAll(): Promise<T[]>;
-  // getById(id: number): Promise<T> | null;
+  getById(id: number): Promise<T | null>;
 }
 
 export interface ICRUDModelUpdater<T> {
