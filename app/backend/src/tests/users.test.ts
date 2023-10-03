@@ -21,19 +21,19 @@ const { expect } = chai;
 describe('POST /login', function () {
   afterEach(function () { sinon.restore() })
 
-  // it('Should login successfully', async function () {
-  //   const body = {
-  //     email: 'user@user.com',
-  //     password: 'secret_user',
-  //   }
+  it('Should login successfully', async function () {
+    const body = {
+      email: 'user@user.com',
+      password: 'secret_user',
+    }
 
-  //   sinon.stub(SequelizeUser, 'findOne').resolves(SequelizeUser.build(userData));
+    sinon.stub(SequelizeUser, 'findOne').resolves(SequelizeUser.build(userData));
 
-  //   const { status, body: { token } } = await chai.request(app).post('/login').send(body);
+    const { status, body: { token } } = await chai.request(app).post('/login').send(body);
 
-  //   expect(status).to.be.equal(200);
-  //   expect(token).to.not.be.undefined;
-  // });
+    expect(status).to.be.equal(200);
+    expect(token).to.not.be.undefined;
+  });
   it(`Should not login successfully when body don't have a email`, async function () {
     const body = {
       password: 'secret_user',
