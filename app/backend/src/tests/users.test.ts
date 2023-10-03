@@ -90,6 +90,7 @@ describe('POST /login', function () {
 
       const token = jwt.sign({
         id: 1,
+        role: 'user',
         }, process.env.JWT_SECRET || 'secret');        
 
       const request = await chai.request(app).get('/login/role').set('Authorization', `Bearer ${token}`);

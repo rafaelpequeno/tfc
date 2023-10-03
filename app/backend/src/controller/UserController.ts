@@ -18,15 +18,9 @@ export default class UserController {
     return res.status(200).json(serviceResponse.data);
   }
 
-  public async getRole(req: Request, res: Response) {
-    const { authorization } = req.headers;
+  static async getRole(_req: Request, res: Response) {
+    const { role } = res.locals;
 
-    const serviceResponse = await this.userService.getRole(authorization);
-
-    if (serviceResponse.status !== 'SUCCESSFUL') {
-      return res.status(401).json(serviceResponse.data);
-    }
-
-    return res.status(200).json(serviceResponse.data);
+    return res.status(200).json({ role });
   }
 }
