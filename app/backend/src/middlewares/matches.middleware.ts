@@ -22,7 +22,7 @@ const validateTeams: RequestHandler = async (req, res, next) => {
 
   if (isHomeTeamValid.status === 'NOT_FOUND' || isAwayTeamValid.status === 'NOT_FOUND') {
     return res.status(404).json({
-      message: 'There is no team with such id',
+      message: 'There is no team with such id!',
     });
   }
   next();

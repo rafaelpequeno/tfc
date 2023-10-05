@@ -174,7 +174,7 @@ describe('GET /matches', function () {
         .send(body);
 
       expect(request.status).to.be.equal(404);
-      expect(request.body).to.be.deep.equal({ message: 'There is no team with such id' })
+      expect(request.body).to.be.deep.equal({ message: 'There is no team with such id!' })
     })
   })
 });
