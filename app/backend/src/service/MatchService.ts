@@ -22,4 +22,15 @@ export default class MatchService {
 
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
   }
+
+  public async updateScore(id: IMatch['id'], score: Partial<IMatch>):
+  Promise<ServiceResponse<ServiceMessage>> {
+    const matchToUpdate = await this.matchModel.updateScore(id, score);
+
+    if (!matchToUpdate) {
+      return { status: 'NOT_FOUND', data: { message: 'Match not found' } };
+    }
+
+    return { status: 'SUCCESSFUL', data: { message: 'Score Updated' } };
+  }
 }

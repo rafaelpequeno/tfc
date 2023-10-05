@@ -12,4 +12,7 @@ router.get('/', (req: Request, res: Response) =>
 router.patch('/:id/finish', verifyToken, (req: Request, res: Response) =>
   matchController.finishMatch(req, res));
 
+router.patch('/:id', verifyToken, (req: Request, res: Response) =>
+  matchController.updateScore(req, res));
+
 export default router;

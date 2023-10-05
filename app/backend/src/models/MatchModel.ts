@@ -37,4 +37,14 @@ export default class MatchModel {
 
     return updatedMatch;
   }
+
+  async updateScore(id: IMatch['id'], score: Partial<IMatch>) {
+    const match = await this.getById(id);
+
+    if (!match) return null;
+
+    await this.model.update(score, { where: { id } });
+
+    return match;
+  }
 }
