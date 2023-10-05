@@ -47,4 +47,10 @@ export default class MatchModel {
 
     return match;
   }
+
+  async create(match: IMatch) {
+    const createdMatch = await this.model.create(match);
+
+    return createdMatch;
+  }
 }

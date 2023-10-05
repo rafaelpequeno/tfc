@@ -33,4 +33,14 @@ export default class MatchService {
 
     return { status: 'SUCCESSFUL', data: { message: 'Score Updated' } };
   }
+
+  public async create(match: IMatch): Promise<ServiceResponse<IMatch>> {
+    const matchToCreate = await this.matchModel.create(match);
+
+    if (!matchToCreate) {
+      return { status: 'INVALID_DATA', data: { message: 'Something went wrong' } };
+    }
+
+    return { status: 'SUCCESSFUL', data: matchToCreate };
+  }
 }

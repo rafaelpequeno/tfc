@@ -576,9 +576,9 @@ export const allMatches = [
   {
     "id": 42,
     "homeTeamId": 6,
-    "homeTeamGoals": 1,
+    "homeTeamGoals": 3,
     "awayTeamId": 1,
-    "awayTeamGoals": 0,
+    "awayTeamGoals": 1,
     "inProgress": true,
     "homeTeam": {
       "teamName": "Ferroviária"
