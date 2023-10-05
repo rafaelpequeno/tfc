@@ -21,4 +21,20 @@ export default class MatchModel {
     });
     return queryParam ? dataWithParam : data;
   }
+
+  async getById(id: number): Promise<IMatch | null> {
+    const data = await this.model.findByPk(id);
+    return data;
+  }
+
+  async finishMatch(id: IMatch['id']): Promise<IMatch | null> {
+    const updatedMatch = await this.getById(id);
+
+    if (!updatedMatch) return null;
+
+    await this.model
+      .update({ inProgress: false }, { where: { id } });
+
+    return updatedMatch;
+  }
 }

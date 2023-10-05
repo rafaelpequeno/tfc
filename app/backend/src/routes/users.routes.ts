@@ -10,6 +10,6 @@ const router = Router();
 router.post('/', usersVerifications, (req: Request, res: Response) =>
   userController.login(req, res));
 
-router.get('/', verifyToken, (req: Request, res: Response) => UserController.getRole(req, res));
+router.get('/role', verifyToken, (req: Request, res: Response) => UserController.getRole(req, res));
 
 export default router;

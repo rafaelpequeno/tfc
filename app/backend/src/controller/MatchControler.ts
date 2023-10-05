@@ -13,4 +13,16 @@ export default class MatchController {
 
     return res.status(200).json(serviceResponse.data);
   }
+
+  public async finishMatch(req: Request, res: Response) {
+    const id = Number(req.params.id);
+
+    const serviceResponse = await this.matchService.finishMatch(id);
+
+    if (serviceResponse.status === 'NOT_FOUND') {
+      return res.status(404).json(serviceResponse.data);
+    }
+
+    return res.status(200).json(serviceResponse.data);
+  }
 }
