@@ -22,6 +22,17 @@ export default class MatchModel {
     return queryParam ? dataWithParam : data;
   }
 
+  async getAllFinished(): Promise<IMatch[]> {
+    const data = await this.model.findAll({
+      include: [
+        { model: SequelizeTeam, as: 'homeTeam', attributes: ['teamName'] },
+        { model: SequelizeTeam, as: 'awayTeam', attributes: ['teamName'] },
+      ],
+      where: { inProgress: false },
+    });
+    return data;
+  }
+
   async getById(id: number): Promise<IMatch | null> {
     const data = await this.model.findByPk(id);
     return data;

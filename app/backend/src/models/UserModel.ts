@@ -9,7 +9,7 @@ export default class UserModel {
 
     if (!user) return null;
 
-    return user.toJSON();
+    return user?.toJSON();
   }
 
   async getById(id: number): Promise<IUser | null> {
