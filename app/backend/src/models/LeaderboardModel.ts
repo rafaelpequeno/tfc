@@ -135,4 +135,32 @@ export default class LeaderboardModel {
     });
     return LeaderboardModel.sortResult(result);
   }
+
+  static calculateLeaderboard(homeLeaderboard: ILeaderboard[], awayLeaderboard: ILeaderboard[]):
+  ILeaderboard[] {
+    const result = homeLeaderboard.map((team) => {
+      const teamIndex = awayLeaderboard.findIndex((awayTeam) => awayTeam.name === team.name);
+      return {
+        name: team.name,
+        totalPoints: team.totalPoints + awayLeaderboard[teamIndex].totalPoints,
+        totalGames: team.totalGames + awayLeaderboard[teamIndex].totalGames,
+        totalVictories: team.totalVictories + awayLeaderboard[teamIndex].totalVictories,
+        totalDraws: team.totalDraws + awayLeaderboard[teamIndex].totalDraws,
+        totalLosses: team.totalLosses + awayLeaderboard[teamIndex].totalLosses,
+        goalsFavor: team.goalsFavor + awayLeaderboard[teamIndex].goalsFavor,
+        goalsOwn: team.goalsOwn + awayLeaderboard[teamIndex].goalsOwn,
+        goalsBalance: team.goalsBalance + awayLeaderboard[teamIndex].goalsBalance,
+        efficiency: Number((((team.totalPoints + awayLeaderboard[teamIndex].totalPoints)
+        / ((team.totalGames + awayLeaderboard[teamIndex].totalGames) * 3)) * 100).toFixed(2)),
+      };
+    });
+    return LeaderboardModel.sortResult(result);
+  }
+
+  async getLeaderboard(): Promise<ILeaderboard[]> {
+    const homeLeaderboard = await this.getFilteredLeaderboard('home');
+    const awayLeaderboard = await this.getFilteredLeaderboard('away');
+    const result = LeaderboardModel.calculateLeaderboard(homeLeaderboard, awayLeaderboard);
+    return result;
+  }
 }

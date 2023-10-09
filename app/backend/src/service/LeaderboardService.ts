@@ -13,4 +13,9 @@ export default class LeaderboardService {
     const stats = await this.leaderboardModel.getFilteredLeaderboard(homeOrAway);
     return { status: 'SUCCESSFUL', data: stats };
   }
+
+  public async getLeaderboard(): Promise<ServiceResponse<ILeaderboard[]>> {
+    const stats = await this.leaderboardModel.getLeaderboard();
+    return { status: 'SUCCESSFUL', data: stats };
+  }
 }
