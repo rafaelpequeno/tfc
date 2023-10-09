@@ -1,4 +1,4 @@
-# ⚽: Welcome to TFC - Trybe Football Club Repository ! ⚽:
+# ⚽ Welcome to TFC - Trybe Football Club Repository !
 ## About the development
 
 In this project, I've configured all the Docker files and built the entire backend. The frontend was already built. I have created an API using TypeScript, which is the latest programming language I've learned, combined with Object-Oriented Programming (OOP) principles. Additionally, I've employed the following technologies:
