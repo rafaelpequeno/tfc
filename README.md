@@ -14,6 +14,13 @@ For the development process, I followed the Test-Driven Development (TDD) approa
 ## About the Application
 
 This application provides information about championship matches and leaderboards. Users can also log in to finish an in-progress match or initiate a new one.
+
+## How to run
+Using Docker Compose you can:
+- Clone the repository
+- In the main folder run `npm run compose:up` to build all the application services
+- To install the project dependencies run in the main folder `npm install` and `npm run install:apps`
+- To stop the services run in the main folder `npm run compose:down`
 <!-- Olá, Tryber!
 Esse é apenas um arquivo inicial para o README do seu projeto.
 É essencial que você preencha esse documento por conta própria, ok?
